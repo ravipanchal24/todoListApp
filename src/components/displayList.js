@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSort } from '@fortawesome/free-solid-svg-icons'
+import { faMinus } from '@fortawesome/free-solid-svg-icons'
 
 const DisplayList = ({ list }) => {
 
@@ -16,21 +17,31 @@ const DisplayList = ({ list }) => {
         }
     }
 
+    function deleteTask()
+    {
+
+    }
+
     if (list != "")
         document.querySelector(".error-message").classList.add('hideErrorMessage');
-        return (
-            <div className="list-items">
-                <h1 style={{ color: "brown", float: "left" }}>My List</h1>
-                <section className='sortContainer'>
-                    <button className='sortDropdown' onClick={sortListAscending}> Sort <FontAwesomeIcon className='sortIcon' icon={faSort} />
-                    </button>
-                </section>
-                <h2 className='error-message'>No tasks created yet!!</h2>
-                <ul>{list.map((item) =>
+    return (
+        <div className="list-items">
+            <h1 style={{ color: "brown", float: "left" }}>My List</h1>
+            <section className='sortContainer'>
+                <button className='sortDropdown' onClick={sortListAscending}> Sort <FontAwesomeIcon className='sortIcon' icon={faSort} />
+                </button>
+            </section>
+            <h2 className='error-message'>No tasks created yet!!</h2>
+            <ul>{list.map((item) =>
+                <div className='list-row'>
+                    <input type={"checkbox"} className="checkbox" />
                     <li>{item}</li>
-                )}</ul>
-            </div>
-        );
+                    <button className='deleteTask' onClick={deleteTask}><FontAwesomeIcon className='deleteIcon' icon={faMinus} /></button>
+                </div>
+
+            )}</ul>
+        </div>
+    );
 };
 
 export default DisplayList;
