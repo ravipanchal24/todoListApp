@@ -1,0 +1,94 @@
+body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #FFFBAC;
+  font-family: 'Josefin Slab', serif;
+}
+
+.App{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#input-box{
+  height: 50px;
+  width: 400px;
+  border-style: none;
+  border-bottom: 2px solid grey;
+  font-size: 2rem;
+  padding: 5px;
+  background: transparent;
+  outline-style: none;
+  font-family: 'Josefin Slab', serif;
+  font-weight: bold;
+  float: left;
+}
+
+.btn{
+  border-style: none;
+  font-size: 3rem;
+  cursor: pointer;
+  background: transparent;
+  color: brown;
+}
+
+.list-items{
+  width: 350px;
+  margin-left: 200px;
+  padding: 0 13px 15px 15px;
+  font-size: 1.5rem;
+  background-color: #FFD56F;
+  height: 450px;
+  overflow: auto;
+}
+
+ul{
+  margin-top: 55px;
+  padding-left: 2px;
+  clear: both;
+}
+
+li{
+  font-weight: bold;
+  text-align: left;
+  margin: 20px 20px 22px;
+  border-bottom: 1px solid black;
+}
+
+.sortContainer{
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.sortDropdown{
+  width: 100px;
+  height: 50px;
+  background: transparent;
+  border-style: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.sortIcon{
+  margin-left: 20px;
+}
+
+h2{
+  clear: both;
+}
+
+.hideErrorMessage{
+  display: none;
+}
