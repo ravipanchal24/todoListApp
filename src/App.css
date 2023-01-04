@@ -41,7 +41,7 @@ body{
   color: brown;
 }
 
-.list-items{
+.list-items-card{
   width: 350px;
   margin-left: 200px;
   padding: 0 13px 15px 15px;
@@ -49,6 +49,40 @@ body{
   background-color: #FFD56F;
   height: 450px;
   overflow: auto;
+}
+
+.sortContainer{
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin-top: 30px;
+}
+
+.sortIcon{
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+.error-message{
+  clear: both;
+  margin-top: 50px;
+}
+
+.hideErrorMessage{
+  display: none;
+}
+
+.list-row{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 5px 0 0;
+}
+
+.list-row-child{
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 ul{
@@ -63,48 +97,13 @@ li{
   margin: 20px 20px 22px;
   border-bottom: 1px solid black;
   list-style-type: none;
-  width: 100%;
+  width: max-content;
   overflow: auto;
 }
 
-.sortContainer{
-  display: flex;
-  align-items: center;
-  justify-content: end;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.sortDropdown{
-  width: 100px;
-  height: 50px;
-  background: transparent;
-  border-style: none;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-.sortIcon{
-  margin-left: 20px;
-}
-
-h2{
-  clear: both;
-}
-
-.hideErrorMessage{
-  display: none;
-}
-
-.list-row{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .checkbox{
-  height: 30px;
-  width: 30px;
+  height: 28px;
+  width: 28px;
   cursor: pointer;
 }
 
@@ -126,3 +125,16 @@ h2{
   border: 2px solid black;
 }
 
+.strike-through{
+    border: 1px solid black;
+    position: relative;
+    top: -11px;
+}
+
+.deleteTaskList{
+  cursor: pointer;
+  position: absolute;
+  top: 25.2em;
+  left: 52.5em;
+  color: crimson;
+}

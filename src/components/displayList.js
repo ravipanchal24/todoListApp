@@ -1,45 +1,69 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSort } from '@fortawesome/free-solid-svg-icons'
 import { faMinus } from '@fortawesome/free-solid-svg-icons'
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { faUpLong } from '@fortawesome/free-solid-svg-icons'
+import { faDownLong } from '@fortawesome/free-solid-svg-icons'
 
-const DisplayList = ({ list }) => {
+const DisplayList = ({ list, setList }) => {
 
-    function sortListAscending() {
-        for (let i = 0; i < list.length; i++) {
-            for (let j = i + 1; j < list.length; j++) {
-                if (list[i] > list[j]) {
-                    let num = list[i];
-                    list[i] = list[j];
-                    list[j] = num;
-                }
-            }
-        }
-    }
-
-    function deleteTask()
-    {
-
-    }
-
-    if (list != "")
+    useEffect(() => {   
+        if (!list.length)
+        document.querySelector(".error-message").classList.remove('hideErrorMessage');
+        else
         document.querySelector(".error-message").classList.add('hideErrorMessage');
+    },[list]);
+
+    const sortAsc = () => {
+        const listCopy = [...list];
+        listCopy.sort((a,b) => a.task.toLowerCase() > b.task.toLowerCase() ? 1 : -1 )
+        setList(listCopy);
+    }
+
+    const sortDesc = () => {
+        const listCopy = [...list];
+        listCopy.sort((a,b) => a.task.toLowerCase() < b.task.toLowerCase() ? 1 : -1);
+        setList(listCopy);
+    }
+
+    function deleteTask(idx) {
+        setList(list.filter((item, index) => index !== idx));
+    }
+
+    function deleteTaskList()
+    {
+        const listCopy = [];
+        setList(listCopy);   
+    }
+
+    function setCheckbox(idx) {
+        setList(list.map((item, index) => {
+            if (index === idx) {
+                return ({ task: item.task, isChecked: !item.isChecked });
+            }
+            return item;
+        }));
+    }
+
     return (
-        <div className="list-items">
+        <div className="list-items-card">
             <h1 style={{ color: "brown", float: "left" }}>My List</h1>
             <section className='sortContainer'>
-                <button className='sortDropdown' onClick={sortListAscending}> Sort <FontAwesomeIcon className='sortIcon' icon={faSort} />
-                </button>
+                <p style={{margin:"0"}}>Sort</p>
+                <FontAwesomeIcon className='sortIcon sortAsc' onClick={sortAsc} icon={faDownLong} />
+                <FontAwesomeIcon className='sortIcon sortDesc' onClick={sortDesc} icon={faUpLong} />
             </section>
             <h2 className='error-message'>No tasks created yet!!</h2>
-            <ul>{list.map((item) =>
-                <div className='list-row'>
-                    <input type={"checkbox"} className="checkbox" />
-                    <li>{item}</li>
-                    <button className='deleteTask' onClick={deleteTask}><FontAwesomeIcon className='deleteIcon' icon={faMinus} /></button>
+            <ul>{list.map((item, idx) =>
+                <div className='list-row' key={idx}>
+                    <div className='list-row-child'>
+                        <input type={"checkbox"} checked={item.isChecked} className="checkbox" onChange={() => setCheckbox(idx)} />
+                        <li>{item.task} {item.isChecked && <div className='strike-through'></div>}</li>
+                    </div>
+                    <button className='deleteTask' onClick={() => deleteTask(idx)}><FontAwesomeIcon className='deleteIcon' icon={faMinus} /></button>
                 </div>
-
             )}</ul>
+            <FontAwesomeIcon icon={faTrashAlt} className='deleteTaskList' onClick={deleteTaskList} />
         </div>
     );
 };

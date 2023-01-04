@@ -5,18 +5,18 @@ const InputForm = ({ list, setList }) => {
 
   const [task, setTask] = useState('');
 
-  const captureText = (e) => {
-    setTask(e.target.value);
-    if (e.key === 'Enter') {
-      console.log('enter');
-      addToList();
+  const captureText = (e) => setTask(e.target.value);
+  const captureEnter = (e) => {
+    if (e.key === 'Enter' && task) {
+      setList([...list,{task,isChecked:false}]);
+      setTask('');
     }
-
   }
+  
   const addToList = (e) => {
     e.preventDefault();
     if (task) {
-      setList([...list, task]);
+      setList([...list,{task:task, isChecked:false}]);
       setTask('');
     }
   }
@@ -24,7 +24,7 @@ const InputForm = ({ list, setList }) => {
   return (
     <div className="container">
       <div className="input-container">
-        <input type="text" id="input-box" placeholder="Enter a new task" onChange={captureText} onKeyDown={captureText} value={task} />
+        <input type="text" id="input-box" placeholder="Enter a new task" onChange={captureText} onKeyDown={captureEnter} value={task} />
         <button className="btn" onClick={addToList}><FontAwesomeIcon icon={faPlus} /></button>
       </div>
     </div>
