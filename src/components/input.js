@@ -8,7 +8,7 @@ const InputForm = ({ list, setList }) => {
   const captureText = (e) => setTask(e.target.value);
   const captureEnter = (e) => {
     if (e.key === 'Enter' && task) {
-      setList([...list,{task,isChecked:false}]);
+      setList([...list,{task, isChecked:false}]);
       setTask('');
     }
   }
@@ -16,7 +16,7 @@ const InputForm = ({ list, setList }) => {
   const addToList = (e) => {
     e.preventDefault();
     if (task) {
-      setList([...list,{task:task, isChecked:false}]);
+      setList([...list,{task, isChecked:false}]);
       setTask('');
     }
   }

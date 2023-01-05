@@ -16,13 +16,13 @@ const DisplayList = ({ list, setList }) => {
 
     const sortAsc = () => {
         const listCopy = [...list];
-        listCopy.sort((a,b) => a.task.toLowerCase() > b.task.toLowerCase() ? 1 : -1 )
+        listCopy.sort( (a,b) => a.task.toLowerCase() > b.task.toLowerCase() ? 1 : -1);
         setList(listCopy);
     }
 
     const sortDesc = () => {
         const listCopy = [...list];
-        listCopy.sort((a,b) => a.task.toLowerCase() < b.task.toLowerCase() ? 1 : -1);
+        listCopy.sorty( (a,b) => a.task.toLowerCase() < b.task.toLowerCase() ? 1 : -1);
         setList(listCopy);
     }
 
@@ -32,14 +32,18 @@ const DisplayList = ({ list, setList }) => {
 
     function deleteTaskList()
     {
+        if(!list.length)
+        alert("Nothing to delete in the list");
+        else{
         const listCopy = [];
-        setList(listCopy);   
+        setList(listCopy);}
     }
 
     function setCheckbox(idx) {
         setList(list.map((item, index) => {
-            if (index === idx) {
-                return ({ task: item.task, isChecked: !item.isChecked });
+            if(index === idx) {
+                document.querySelectorAll('.listItem')[idx].classList.toggle('strike-through');
+                return({task: item.task, isChecked: !item.isChecked})
             }
             return item;
         }));
@@ -56,10 +60,8 @@ const DisplayList = ({ list, setList }) => {
             <h2 className='error-message'>No tasks created yet!!</h2>
             <ul>{list.map((item, idx) =>
                 <div className='list-row' key={idx}>
-                    <div className='list-row-child'>
-                        <input type={"checkbox"} checked={item.isChecked} className="checkbox" onChange={() => setCheckbox(idx)} />
-                        <li>{item.task} {item.isChecked && <div className='strike-through'></div>}</li>
-                    </div>
+                    <input type={"checkbox"} checked={item.isChecked} className="checkbox" onChange={() => setCheckbox(idx)} />
+                    <li className='listItem'>{item.task}</li>
                     <button className='deleteTask' onClick={() => deleteTask(idx)}><FontAwesomeIcon className='deleteIcon' icon={faMinus} /></button>
                 </div>
             )}</ul>

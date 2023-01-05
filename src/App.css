@@ -80,7 +80,6 @@ body{
 }
 
 .list-row-child{
-  width: 100%;
   display: flex;
   align-items: center;
 }
@@ -92,18 +91,18 @@ ul{
 }
 
 li{
+  width: 100%;
   font-weight: bold;
   text-align: left;
   margin: 20px 20px 22px;
   border-bottom: 1px solid black;
   list-style-type: none;
-  width: max-content;
   overflow: auto;
 }
 
 .checkbox{
-  height: 28px;
-  width: 28px;
+  height: 25px;
+  width: 25px;
   cursor: pointer;
 }
 
@@ -112,8 +111,8 @@ li{
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 25px;
-  height: 25px;
+  width: 23px;
+  height: 23px;
   border: 2px solid red;
   border-radius: 50%;
   cursor: pointer;
@@ -126,9 +125,7 @@ li{
 }
 
 .strike-through{
-    border: 1px solid black;
-    position: relative;
-    top: -11px;
+    text-decoration: line-through;
 }
 
 .deleteTaskList{
